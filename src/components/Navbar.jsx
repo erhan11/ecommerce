@@ -9,6 +9,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -24,8 +25,9 @@ const SeachContainer = styled.div`
   border: 1px solid lightgrey;
   display: flex;
   align-items: center;
+  margin-left: 25px;
+  padding: 5px;
 `;
-
 const Center = styled.div`
   flex: 1;
 `;
