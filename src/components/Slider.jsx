@@ -2,7 +2,9 @@ import {
   KeyboardArrowLeftOutlined,
   KeyboardArrowRightOutlined,
 } from "@mui/icons-material";
+import { useState } from "react";
 import styled from "styled-components";
+import { sliderItems } from "../data";
 
 const Container = styled.div`
   width: 100%;
@@ -10,6 +12,7 @@ const Container = styled.div`
   display: flex;
   background-color: coral;
   position: relative;
+  overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -28,11 +31,13 @@ const Arrow = styled.div`
   right: ${(props) => props.direction === "right" && "10px"};
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
@@ -40,6 +45,7 @@ const Slide = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
+  border-color: #${(props) => props.bg};
 `;
 
 const ImgContainer = styled.div`
@@ -73,54 +79,36 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    }
+  };
+
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <KeyboardArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
-        <Slide>
-          <ImgContainer>
-            <Image
-              src="https://picsum.photos/200/300
-"
-            />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>baslik2</Title>
-            <Desc>Info here!2</Desc>
-            <Button>Shop Now!2</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide>
-          <ImgContainer>
-            <Image
-              src="https://picsum.photos/200/300
-"
-            />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>baslik2</Title>
-            <Desc>Info here!2</Desc>
-            <Button>Shop Now!2</Button>
-          </InfoContainer>
-        </Slide>{" "}
-        <Slide>
-          <ImgContainer>
-            <Image
-              src="https://picsum.photos/200/300
-"
-            />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>baslik3</Title>
-            <Desc>Info here!3</Desc>
-            <Button>Shop Now!3</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.decs}</Desc>
+              <Button>Shop Now!2</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
 
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <KeyboardArrowRightOutlined />
       </Arrow>
     </Container>
