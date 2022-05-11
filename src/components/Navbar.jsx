@@ -1,6 +1,5 @@
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import React from "react";
 import styled from "styled-components";
 
@@ -71,13 +70,13 @@ const Navbar = () => {
           </SeachContainer>
         </Left>
         <Center>
-          <Logo> Erhan. </Logo>
+          <Logo> Ecommerce App. </Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={5} color="primary">
+            <Badge badgeContent={19} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
