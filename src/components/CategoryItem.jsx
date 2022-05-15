@@ -31,6 +31,8 @@ const Button = styled.button`
   padding: 10px;
   background-color: white;
   color: grey;
+  cursor: pointer;
+  font-weight: 600;
 `;
 
 export const CategoryItem = ({ item }) => {
